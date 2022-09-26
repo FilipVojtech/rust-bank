@@ -1,7 +1,7 @@
-use rand::Rng;
-
 mod shell;
 mod bank_os;
+mod strings;
+mod file_sys;
 
 fn main() {
     /*
@@ -11,18 +11,13 @@ fn main() {
         - Max 1
     3. Posílání, příjímání
      */
-    let mut input: String;
-    println!("Welcome to BankOS\n");
-    print_secret_id();
+    let mut input: Vec<String>;
+    bank_os::init();
     loop {
         // Get input
         input = shell::get_input();
         // To console
-        shell::parse(&input);
+        shell::parse_command(input);
         println!("__________\n");
     }
-}
-
-fn print_secret_id() {
-    println!("{}", rand::thread_rng().gen_range(1..=100));
 }
